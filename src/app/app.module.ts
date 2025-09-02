@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { StoreModule } from "./store/store.module";
 
 @NgModule({
   declarations: [
@@ -10,9 +11,12 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
-  ],
+    AppRoutingModule,
+    StoreModule
+],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+//// root level entities do not directly try to connect to model level entity (services - data)

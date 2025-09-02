@@ -1,0 +1,5 @@
+model layer
+
+//structure(Typescript)
+//data (static and dynamic)
+// data-repository (CRUD Methods)
