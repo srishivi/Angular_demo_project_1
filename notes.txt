@@ -3,3 +3,76 @@ model layer
 //structure(Typescript)
 //data (static and dynamic)
 // data-repository (CRUD Methods)
+
+
+
+
+  Routing - switching between UI components based on user events.
+
+
+     first navigation - no (how a developer expects a user to navigate)
+
+
+  step -1 - HashBang - 'any event that makes a state change in the BrowserURL'  - progamatically - yes
+
+              HTML HashBang:
+<a href='#sent'> sent folder </a>
+
+              Angular HashBang:
+
+                   1) from a non template -
+
+                     router.navigateByUrl('/cart')
+
+
+                              &
+
+                    2) routerLink='/store'
+
+
+  step 2 - RouterTree (also known RouterStateTree)
+
+                -- as an array of route {}'s , path propert tracks the BrowserURL state
+
+                   and passes the control to the component property which in turn
+
+                   serves a feature component.
+
+           RouterModule.forRoot([
+
+            {
+
+              path:'store',
+
+              component:StoreComponent
+
+
+            },
+
+            {
+
+               path:'cart',              // track's the BrowserURL state     localhost:3001/cart
+
+              component:CartDetail
+
+
+            }
+
+
+           ]
+
+
+
+           )
+
+
+
+
+
+  step 3 - <router-outlet>    </router-outlet>  - Routing placeholder :
+
+           - accomodates any component which is being served by the 'RouterTree' (RouterStateTree)
+
+// HTTP Client
+Routing Module
+Routing Guard

@@ -1,3 +1,6 @@
+import { Router } from '@angular/router';
+import { Cart } from '../model/cart.model';
+import { Product } from './../model/product.model';
 import { ProductRepository } from './../model/product.repository';
 import { Component } from '@angular/core';
 
@@ -12,7 +15,7 @@ export class StoreComponent {
   public selectedPage = 1; // 2
 
   // register this
-  constructor(private repository: ProductRepository) {}
+  constructor(private repository: ProductRepository, private cart : Cart,  private router: Router) {}
 
   get products() {
     let pageIndex = (this.selectedPage - 1) * this.productsPerPage;
@@ -47,6 +50,12 @@ export class StoreComponent {
 
   changePage(newPage: number) {
     this.selectedPage = newPage;
+  }
+
+  addProductToCart(product: Product) {
+    console.log(product);
+    this.cart.addLine(product);
+    this.router.navigateByUrl("/cart");
   }
 }
 
