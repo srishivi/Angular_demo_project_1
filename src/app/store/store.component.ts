@@ -7,25 +7,48 @@ import { Component } from '@angular/core';
   standalone: false,
 })
 export class StoreComponent {
-
-  public selectedCategory = 'undefined'; // 'Category 1'
+  public selectedCategory = 'undefined'; // 'Category 1'  ---- 'undefined'
+  public productsPerPage = 4; // event driven
+  public selectedPage = 1; // 2
 
   // register this
   constructor(private repository: ProductRepository) {}
 
   get products() {
-    // - invoking the function - property (computed property) - not allowing for inverse data flow
-    return this.repository.getProducts(this.selectedCategory);
+    let pageIndex = (this.selectedPage - 1) * this.productsPerPage;
+    return this.repository
+      .getProducts(this.selectedCategory)
+      .slice(pageIndex, pageIndex + this.productsPerPage);
   }
 
   get categories() {
-    // // - invoking the function - property (computed property)
     return this.repository.getCategories();
   }
 
   changeCategory(newCategory?: any) {
     this.selectedCategory = newCategory;
+    this.changePage(1);
+  }
+
+  changePageSize(newSize: any) {
+    this.productsPerPage = newSize.value;
+  }
+
+  get pageNumbers() {
+    return Array(
+      Math.ceil(
+        this.repository.getProducts(this.selectedCategory).length /
+          this.productsPerPage
+      )
+    )
+      .fill(0)
+      .map((x, i) => i + 1);
+  }
+
+  changePage(newPage: number) {
+    this.selectedPage = newPage;
   }
 }
 
 // ECMAScript version 5 - Accessor property - auto getter & auto setter
+

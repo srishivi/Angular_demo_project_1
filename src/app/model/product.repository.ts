@@ -3,13 +3,14 @@
 import { Injectable } from '@angular/core';
 import { Product } from './product.model';
 import { StaticDataSource } from './static.datasource';
+import { RestDataSource } from './rest.datasource';
 
 @Injectable()
 export class ProductRepository {
   private products: Product[] = []; // 15 objects   -- state aware ? yes
   private categories: any[] = []; // 15 strings     -- state aware ?  yes
 
-  constructor(private datasource: StaticDataSource) {
+  constructor(private datasource: RestDataSource) {
     this.datasource.getProducts().subscribe((data) => {
       this.products = data;
       this.categories = data
