@@ -1,3 +1,4 @@
+import { StoreFirstGuard } from './StoreFirstGuard';
 import { CartDetail } from './store/cartDetail.component';
 import { StoreModule } from './store/store.module';
 import { StoreComponent } from './store/store.component';
@@ -6,7 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { StoreFirstGuard } from './StoreFirstGuard';
+import { CheckOut } from './store/checkout.component';
 
 @NgModule({
   declarations: [
@@ -20,16 +21,22 @@ import { StoreFirstGuard } from './StoreFirstGuard';
     RouterModule.forRoot([
       {
         path: 'store',
+        canActivate: [StoreFirstGuard], // route guard - non first navigation
         component: StoreComponent,
       },
       {
-        path: 'cart',
-        canActivate: [StoreFirstGuard], //Routing Guard
+        path: 'cart', // tracks /subscribe's to the BrowserURL state -- localhost:3001/cart
+        canActivate: [StoreFirstGuard], // route guard - non first navigation
         component: CartDetail,
       },
+        {
+        path: 'checkout', // tracks /subscribe's to the BrowserURL state -- localhost:3001/cart
+        canActivate: [StoreFirstGuard], // route guard - non first navigation
+        component: CheckOut,
+      },
       {
-        path: '**',  //default path
-        redirectTo: '/store', //HashBang
+        path: '**', // default path
+        redirectTo: '/store', // state change in the BrowserURL - HashBang
       },
     ]),
   ],

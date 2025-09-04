@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Product } from "./product.model";
+import { Order } from "./order.model";
 
 const PROTOCOL = "http";
 const PORT = 3500;
@@ -16,6 +17,10 @@ export class RestDataSource {
 
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.baseURL + "products");
+  }
+
+  saveOrder(order: Order): Observable<any> {
+    return this.http.post<any>(this.baseURL + "orders", order);
   }
 
 }
