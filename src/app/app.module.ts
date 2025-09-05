@@ -29,6 +29,10 @@ import { CheckOut } from './store/checkout.component';
         canActivate: [StoreFirstGuard], // route guard - non first navigation
         component: CartDetail,
       },
+      {
+        path: 'admin', // tracks /subscribe's to the BrowserURL state -- localhost:3001/cart
+        loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), // lazy loading
+      },
         {
         path: 'checkout', // tracks /subscribe's to the BrowserURL state -- localhost:3001/cart
         canActivate: [StoreFirstGuard], // route guard - non first navigation

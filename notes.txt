@@ -76,3 +76,19 @@ model layer
 // HTTP Client
 Routing Module
 Routing Guard
+
+
+'separation of conerns promotes reusability'
+
+1) repository - not being reused as of now. - justify
+
+2) tested our observables (programatically , via the app code)
+
+3) Lazy loading of angular module - Admin section
+
+4) Nested routing
+
+5) Route Params for component intercommunication
+
+
+separation of concerns promotes reusability
